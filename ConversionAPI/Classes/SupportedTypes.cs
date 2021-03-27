@@ -13,5 +13,14 @@ namespace ConversionAPI.Classes
             Fahrenheit,
             Unsupported
         }
+
+        public enum ConverterTypes
+        {
+            Temperature,
+            Length,
+            Mass,
+            Speed,
+            Volume
+        }
     }
 }

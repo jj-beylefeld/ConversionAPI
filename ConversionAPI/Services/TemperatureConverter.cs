@@ -9,7 +9,7 @@ using UnitsNet;
 
 namespace ConversionAPI.Services
 {
-    public class TemperatureConverter : ITemperatureConverter
+    public class TemperatureConverter : IConverter
     {
         public async Task<IConverterResult> Convert(Enum fromType, double fromValue, Enum toType)
         {

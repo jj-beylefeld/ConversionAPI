@@ -14,14 +14,14 @@ namespace ConversionAPITests
         [Fact]
         public void UnsupportedConversionFromTypeThrowsException()
         {
-            ITemperatureConverter temperatureConverter = new TemperatureConverter();
+            IConverter temperatureConverter = new TemperatureConverter();
             Assert.ThrowsAsync<NotImplementedException>(() => temperatureConverter.Convert(SupportedTypes.Temperature.Unsupported,2.25,SupportedTypes.Temperature.Celsius));
         }
 
         [Fact]
         public void UnsupportedConversionToTypeThrowsException()
         {
-            ITemperatureConverter temperatureConverter = new TemperatureConverter();
+            IConverter temperatureConverter = new TemperatureConverter();
             Assert.ThrowsAsync<NotImplementedException>(() => temperatureConverter.Convert(SupportedTypes.Temperature.Fahrenheit, 2.25, SupportedTypes.Temperature.Unsupported));
         }
 
@@ -30,7 +30,7 @@ namespace ConversionAPITests
         [InlineData(SupportedTypes.Temperature.Fahrenheit,32, SupportedTypes.Temperature.Celsius,0)]
         public void testSupportedTemperatureConversions(SupportedTypes.Temperature fromType, double fromValue, SupportedTypes.Temperature toType, double expectedResult)
         {
-            ITemperatureConverter temperatureConverter = new TemperatureConverter();
+            IConverter temperatureConverter = new TemperatureConverter();
             Task<IConverterResult> convertResult = temperatureConverter.Convert(fromType, fromValue, toType);
             Assert.Equal(expectedResult, convertResult.Result.resultValue);
         }
@@ -38,7 +38,7 @@ namespace ConversionAPITests
         [Fact]
         public void ConvertMustReturnIConverterResult()
         {
-            ITemperatureConverter temperatureConverter = new TemperatureConverter();
+            IConverter temperatureConverter = new TemperatureConverter();
             Assert.IsAssignableFrom<Task<IConverterResult>>(temperatureConverter.Convert(SupportedTypes.Temperature.Fahrenheit, 2.25, SupportedTypes.Temperature.Celsius));
         }
     }

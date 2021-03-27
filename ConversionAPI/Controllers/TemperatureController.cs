@@ -1,4 +1,5 @@
-﻿using ConversionAPI.Classes.Implementation;
+﻿using ConversionAPI.Classes;
+using ConversionAPI.Classes.Implementation;
 using ConversionAPI.Classes.Interfaces;
 using ConversionAPI.Services;
 using Microsoft.AspNetCore.Http;
@@ -14,19 +15,20 @@ namespace ConversionAPI.Controllers
     [ApiController]
     public class TemperatureController : ControllerBase
     {
-        protected readonly ITemperatureConverter _temperatureConverter;
+        //protected readonly IConverter _temperatureConverter;
+        protected readonly IConverterFactory _converterFactory;
 
-        public TemperatureController(ITemperatureConverter temperatureConverter)
+        public TemperatureController(IConverterFactory converterFactory)
         {
-            _temperatureConverter = temperatureConverter ?? throw new ArgumentNullException(nameof(temperatureConverter));
+            _converterFactory = converterFactory ?? throw new ArgumentNullException(nameof(converterFactory));
         }
 
         [HttpPost]
-        //[Route("convert")]
+        [Route("convert")]
         [Produces("application/json", Type = typeof(ConverterResult))]
         public async Task<IActionResult> convert([FromBody]TemperatureConverterRequest request)
         {
-            var res = await _temperatureConverter.Convert(request).ConfigureAwait(false);
+            var res = await _converterFactory.getConverter(SupportedTypes.ConverterTypes.Temperature).Convert(request).ConfigureAwait(false);
             return Ok(res);
         }
     }
