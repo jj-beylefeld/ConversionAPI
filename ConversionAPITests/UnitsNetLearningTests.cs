@@ -31,5 +31,14 @@ namespace ConversionAPITests
         {
             Assert.Equal(1, Math.Round(Mass.FromPounds(2.20462).Kilograms,5));
         }
+
+        [Fact]
+        public void detectLengthUnit()
+        {
+            //Temperature.TryParseUnit("DegreeCelsius", out UnitsNet.Units.TemperatureUnit detectedUnit);
+            //var detectedUnit = Temperature.ParseUnit("DegreesCelsius");
+            var detectedUnit = UnitParser.Default.Parse("cm",typeof(UnitsNet.Units.LengthUnit));
+            Assert.Equal(UnitsNet.Units.LengthUnit.Centimeter,detectedUnit);
+        }
     }
 }
