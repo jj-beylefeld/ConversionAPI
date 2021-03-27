@@ -19,6 +19,12 @@ namespace ConversionAPI.Classes
             Pounds,
             Unsupported
         }
+        public enum Speed
+        {
+            KilometersPerHour,
+            MilesPerHour,
+            Unsupported
+        }
 
         public enum ConverterTypes
         {

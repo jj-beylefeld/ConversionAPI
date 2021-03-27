@@ -16,6 +16,8 @@ namespace ConversionAPI.Services
                     return new TemperatureConverter();
                 case SupportedTypes.ConverterTypes.Mass:
                     return new MassConverter();
+                case SupportedTypes.ConverterTypes.Speed:
+                    return new SpeedConverter();
                 default:
                     throw new ArgumentOutOfRangeException(string.Format("Converter of type {0} is not supported", converterType));
             }
