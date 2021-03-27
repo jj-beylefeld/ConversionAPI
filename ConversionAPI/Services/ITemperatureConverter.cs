@@ -9,7 +9,7 @@ namespace ConversionAPI.Services
 {
     public interface ITemperatureConverter
     {
-        public Task<IConverterResult> Convert(SupportedTypes.Temperature fromType, double fromValue, SupportedTypes.Temperature toType);
+        public Task<IConverterResult> Convert(Enum fromType, double fromValue, Enum toType);
         public Task<IConverterResult> Convert(IConverterRequest convertRequest);
 
     }

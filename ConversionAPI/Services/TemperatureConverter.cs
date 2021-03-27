@@ -11,7 +11,7 @@ namespace ConversionAPI.Services
 {
     public class TemperatureConverter : ITemperatureConverter
     {
-        public async Task<IConverterResult> Convert(SupportedTypes.Temperature fromType, double fromValue, SupportedTypes.Temperature toType)
+        public async Task<IConverterResult> Convert(Enum fromType, double fromValue, Enum toType)
         {
             double resultValue;
             switch (fromType)
@@ -38,11 +38,11 @@ namespace ConversionAPI.Services
         public async Task<IConverterResult> Convert(IConverterRequest convertRequest)
         {
             convertRequest.validate();
-            return  await Convert((SupportedTypes.Temperature)convertRequest.getFromType(),convertRequest.fromValue, (SupportedTypes.Temperature)convertRequest.getToType()).ConfigureAwait(false);
+            return  await Convert(convertRequest.getFromType(),convertRequest.fromValue, convertRequest.getToType()).ConfigureAwait(false);
 
         }
 
-        private double convertValue(Temperature fromTemperature, SupportedTypes.Temperature toType)
+        private double convertValue(Temperature fromTemperature, Enum toType)
         {
             double returnValue=0;
             switch (toType)
