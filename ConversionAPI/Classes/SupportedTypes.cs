@@ -25,6 +25,18 @@ namespace ConversionAPI.Classes
             MilesPerHour,
             Unsupported
         }
+        public enum Length
+        {
+            Feet,
+            Meters,
+            Unsupported
+        }
+        public enum Volume
+        {
+            CubicCentimeters,
+            CubicInches,
+            Unsupported
+        }
 
         public enum ConverterTypes
         {

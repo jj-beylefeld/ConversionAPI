@@ -18,6 +18,10 @@ namespace ConversionAPI.Services
                     return new MassConverter();
                 case SupportedTypes.ConverterTypes.Speed:
                     return new SpeedConverter();
+                case SupportedTypes.ConverterTypes.Length:
+                    return new LengthConverter();
+                case SupportedTypes.ConverterTypes.Volume:
+                    return new VolumeConverter();
                 default:
                     throw new ArgumentOutOfRangeException(string.Format("Converter of type {0} is not supported", converterType));
             }

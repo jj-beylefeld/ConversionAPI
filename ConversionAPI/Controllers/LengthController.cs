@@ -11,11 +11,11 @@ namespace ConversionAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MassController : Controller
+    public class LengthController : Controller
     {
         protected readonly IConverterFactory _converterFactory;
 
-        public MassController(IConverterFactory converterFactory)
+        public LengthController(IConverterFactory converterFactory)
         {
             _converterFactory = converterFactory ?? throw new ArgumentNullException(nameof(converterFactory));
         }
@@ -23,9 +23,9 @@ namespace ConversionAPI.Controllers
         [HttpPost]
         [Route("convert")]
         [Produces("application/json", Type = typeof(ConverterResult))]
-        public async Task<IActionResult> convert([FromBody] MassConverterRequest request)
+        public async Task<IActionResult> convert([FromBody] LengthConverterRequest request)
         {
-            var res = await _converterFactory.getConverter(SupportedTypes.ConverterTypes.Mass).Convert(request).ConfigureAwait(false);
+            var res = await _converterFactory.getConverter(SupportedTypes.ConverterTypes.Length).Convert(request).ConfigureAwait(false);
             return Ok(res);
         }
 
@@ -34,7 +34,7 @@ namespace ConversionAPI.Controllers
         [Produces("application/json", Type = typeof(List<string>))]
         public async Task<IActionResult> getConverterTypes()
         {
-            return Ok(Enum.GetNames(typeof(SupportedTypes.Mass)));
+            return Ok(Enum.GetNames(typeof(SupportedTypes.Length)));
         }
     }
 }

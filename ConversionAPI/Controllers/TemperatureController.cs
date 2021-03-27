@@ -32,7 +32,7 @@ namespace ConversionAPI.Controllers
             return Ok(res);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("converterTypes")]
         [Produces("application/json", Type = typeof(List<string>))]
         public async Task<IActionResult> getConverterTypes()
