@@ -31,8 +31,14 @@ namespace ConversionAPITests
         {
             ITemperatureConverter temperatureConverter = new TemperatureConverter();
             IConverterResult convertResult = temperatureConverter.Convert(fromType, fromValue, toType);
-
             Assert.Equal(expectedResult, convertResult.resultValue);
+        }
+
+        [Fact]
+        public void ConvertMustReturnIConverterResult()
+        {
+            ITemperatureConverter temperatureConverter = new TemperatureConverter();
+            Assert.IsAssignableFrom<IConverterResult>(temperatureConverter.Convert(SupportedTypes.Temperature.Fahrenheit, 2.25, SupportedTypes.Temperature.Celsius));
         }
     }
 }
