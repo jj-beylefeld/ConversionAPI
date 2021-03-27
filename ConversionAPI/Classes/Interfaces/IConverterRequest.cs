@@ -16,5 +16,7 @@ namespace ConversionAPI.Classes.Interfaces
         public string toType { get; set; }
 
         public void validate();
+        public Enum getFromType();
+        public Enum getToType();
     }
 }
