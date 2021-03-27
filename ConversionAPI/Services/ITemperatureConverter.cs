@@ -9,6 +9,8 @@ namespace ConversionAPI.Services
 {
     public interface ITemperatureConverter
     {
-        public IConverterResult Convert(SupportedTypes.Temperature fromType, double fromValue, SupportedTypes.Temperature toType);
+        public Task<IConverterResult> Convert(SupportedTypes.Temperature fromType, double fromValue, SupportedTypes.Temperature toType);
+        public Task<IConverterResult> Convert(IConverterRequest convertRequest);
+
     }
 }

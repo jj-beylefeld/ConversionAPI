@@ -6,6 +6,7 @@ bin-release/
 bin
 obj
 *.suo
+*.csproj.user
 # Other files and folders
 .settings/
 
