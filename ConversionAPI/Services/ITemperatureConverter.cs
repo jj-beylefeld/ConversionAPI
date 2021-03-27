@@ -1,4 +1,5 @@
 ﻿using ConversionAPI.Classes;
+using ConversionAPI.Classes.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,6 @@ namespace ConversionAPI.Services
 {
     public interface ITemperatureConverter
     {
-        public double Convert(SupportedTypes.Temperature fromType, double fromValue, SupportedTypes.Temperature toType);
+        public IConverterResult Convert(SupportedTypes.Temperature fromType, double fromValue, SupportedTypes.Temperature toType);
     }
 }

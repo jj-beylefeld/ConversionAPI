@@ -12,9 +12,5 @@
     <PackageReference Include="UnitsNet" Version="4.87.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Classes\Implementation\" />
-  </ItemGroup>
-
 
 </Project>

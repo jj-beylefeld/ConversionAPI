@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using ConversionAPI.Classes;
+using ConversionAPI.Classes.Interfaces;
 
 namespace ConversionAPITests
 {
@@ -29,10 +30,9 @@ namespace ConversionAPITests
         public void testSupportedTemperatureConversions(SupportedTypes.Temperature fromType, double fromValue, SupportedTypes.Temperature toType, double expectedResult)
         {
             ITemperatureConverter temperatureConverter = new TemperatureConverter();
+            IConverterResult convertResult = temperatureConverter.Convert(fromType, fromValue, toType);
 
-            var actualResult = temperatureConverter.Convert(fromType, fromValue, toType);
-
-            Assert.Equal(expectedResult, actualResult);
+            Assert.Equal(expectedResult, convertResult.resultValue);
         }
     }
 }

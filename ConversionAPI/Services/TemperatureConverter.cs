@@ -1,4 +1,6 @@
 ﻿using ConversionAPI.Classes;
+using ConversionAPI.Classes.Implementation;
+using ConversionAPI.Classes.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +11,28 @@ namespace ConversionAPI.Services
 {
     public class TemperatureConverter : ITemperatureConverter
     {
-        public double Convert(SupportedTypes.Temperature fromType, double fromValue, SupportedTypes.Temperature toType)
+        public IConverterResult Convert(SupportedTypes.Temperature fromType, double fromValue, SupportedTypes.Temperature toType)
         {
+            double resultValue;
             switch (fromType)
             {
-                case SupportedTypes.Temperature.Celsius: 
-                    return convertValue(Temperature.FromDegreesCelsius(fromValue), toType);
+                case SupportedTypes.Temperature.Celsius:
+                    resultValue = convertValue(Temperature.FromDegreesCelsius(fromValue), toType);
+                    break;
                 case SupportedTypes.Temperature.Fahrenheit:
-                    return convertValue(Temperature.FromDegreesFahrenheit(fromValue), toType);
+                    resultValue = convertValue(Temperature.FromDegreesFahrenheit(fromValue), toType);
                     break;
                 default:
                     throw new NotImplementedException(string.Format("Temperature conversion for enum {0} is not supported", fromType));
             }
+
+            return new ConverterResult
+            {
+                fromType = fromType.ToString(),
+                fromValue = fromValue,
+                resultType = toType.ToString(),
+                resultValue = resultValue
+            };
         }
 
         private double convertValue(Temperature fromTemperature, SupportedTypes.Temperature toType)
