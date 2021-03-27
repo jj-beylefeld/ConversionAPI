@@ -39,7 +39,6 @@ namespace ConversionAPI.Services
         {
             convertRequest.validate();
             return  await Convert(convertRequest.getFromType(),convertRequest.fromValue, convertRequest.getToType()).ConfigureAwait(false);
-
         }
 
         private double convertValue(Temperature fromTemperature, Enum toType)

@@ -13,6 +13,12 @@ namespace ConversionAPI.Classes
             Fahrenheit,
             Unsupported
         }
+        public enum Mass
+        {
+            Kilograms,
+            Pounds,
+            Unsupported
+        }
 
         public enum ConverterTypes
         {

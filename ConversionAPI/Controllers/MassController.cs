@@ -1,8 +1,6 @@
 ﻿using ConversionAPI.Classes;
 using ConversionAPI.Classes.Implementation;
-using ConversionAPI.Classes.Interfaces;
 using ConversionAPI.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,12 +11,11 @@ namespace ConversionAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TemperatureController : ControllerBase
+    public class MassController : Controller
     {
-        //protected readonly IConverter _temperatureConverter;
         protected readonly IConverterFactory _converterFactory;
 
-        public TemperatureController(IConverterFactory converterFactory)
+        public MassController(IConverterFactory converterFactory)
         {
             _converterFactory = converterFactory ?? throw new ArgumentNullException(nameof(converterFactory));
         }
@@ -26,9 +23,9 @@ namespace ConversionAPI.Controllers
         [HttpPost]
         [Route("convert")]
         [Produces("application/json", Type = typeof(ConverterResult))]
-        public async Task<IActionResult> convert([FromBody]TemperatureConverterRequest request)
+        public async Task<IActionResult> convert([FromBody] MassConverterRequest request)
         {
-            var res = await _converterFactory.getConverter(SupportedTypes.ConverterTypes.Temperature).Convert(request).ConfigureAwait(false);
+            var res = await _converterFactory.getConverter(SupportedTypes.ConverterTypes.Mass).Convert(request).ConfigureAwait(false);
             return Ok(res);
         }
 
@@ -37,7 +34,7 @@ namespace ConversionAPI.Controllers
         [Produces("application/json", Type = typeof(List<string>))]
         public async Task<IActionResult> getConverterTypes()
         {
-            return Ok(Enum.GetNames(typeof(SupportedTypes.Temperature)));
+            return Ok(Enum.GetNames(typeof(SupportedTypes.Mass)));
         }
     }
 }
